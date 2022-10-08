@@ -44,3 +44,9 @@ export const Value = styled('p')`
 export const Description = styled('p')`
     word-break: break-word;
 `;
+
+/*
+Escrever ({theme}) é uma redução para (props) => props....
+
+Aqui é usado uma paleta de cores presente em themes para facilitar caso seja necessario trocar as cores, não precisar ser um por vez
+*/

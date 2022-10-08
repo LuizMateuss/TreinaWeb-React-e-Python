@@ -44,3 +44,9 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+/*
+O componente Box é usado para estilização, funciona semelhante à uma div
+
+A constante teachers é do tipo Teachers, que está na interface na pasta @types
+*/

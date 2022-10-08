@@ -31,3 +31,7 @@ const List = (props: ListProps) => {
 }
 
 export default List;
+
+/*
+o metodo toLocaleString pode ser usado para colocar padronização de moedas e valores monetários
+*/
