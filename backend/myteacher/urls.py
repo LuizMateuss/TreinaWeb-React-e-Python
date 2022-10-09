@@ -18,9 +18,12 @@ from django.urls import path
 
 # from app.views import home
 from app.views import HomeApiView
+from teacher.views import TeacherApiView, RegisterClassApiView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', home)
-    path('', HomeApiView.as_view())
+    path('', HomeApiView.as_view()),
+    path('teachers/', TeacherApiView.as_view()),
+    path('teachers/<int:id>/classes', RegisterClassApiView.as_view())
 ]

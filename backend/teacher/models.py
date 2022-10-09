@@ -1,4 +1,3 @@
-from unittest.util import _MAX_LENGTH
 from django.db import models
 
 class Teacher(models.Model):
@@ -7,6 +6,10 @@ class Teacher(models.Model):
     description = models.TextField(null=False, blank=False)
     picture = models.URLField(max_length=255, null=False, blank=False)
 
+class Class(models.Model):
+    name = models.CharField(max_length=100, null=False, blank=False)
+    email = models.EmailField(max_length=255, null=False, blank=False)
+    teacher = models.ForeignKey(to=Teacher, on_delete=models.CASCADE, related_name="classes", null=False, blank=False)
 
 # >python manage.py makemigrations
 # >python manage.py migrate
