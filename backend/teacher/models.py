@@ -14,6 +14,7 @@ class Class(models.Model):
 # >python manage.py makemigrations
 # >python manage.py migrate
 
+# python manage.py shell
 # >>> from teacher.models import Teacher
 # >>> teacher = Teacher(name="Luiz Mateus", value_hour=96.60, description="Professor de música e violão", picture="https://github.com/luizmateuss.png")
 # >>> teacher.nome
