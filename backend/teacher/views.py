@@ -26,4 +26,9 @@ class RegisterClassApiView(APIView):
             classe.save()
             classe_serializer = ClassSerializer(classe, many=False)
             return Response(classe_serializer.data, status=HTTP_201_CREATED)
-        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+        # return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+        return Response(
+            {
+                "message": "Houveram erros",
+                "errors": serializer.errors
+            }, status=HTTP_400_BAD_REQUEST)
