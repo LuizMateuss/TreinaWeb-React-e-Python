@@ -1,20 +1,63 @@
-import { Box } from '@mui/material'
+import { Box, Button, Dialog, DialogActions, Grid, TextField } from '@mui/material'
 import type { NextPage } from 'next'
-import { Teacher } from '../src/@types/teacher'
-import Lista from '../src/components/List/List'
+import List from '../src/components/List/List'
 import { useIndex } from '../src/hooks/pages/useIndex'
 
 const Home: NextPage = () => {
-
   // const object = useIndex()
   // descontruindo objeto
-  const {listTeachers} = useIndex()
+  const {
+    listTeachers,
+    name,
+    setName,
+    email,
+    setEmail,
+    selectedTeacher,
+    setSelectedTeacher,
+    classDate
+  } = useIndex()
 
   return (
+    <div>
       <Box sx={{backgroundColor: 'secondary.main'}}>
-        <Lista teachers={listTeachers}></Lista>
+        <List
+          teachers={listTeachers}
+          onSelect={(teacher) => setSelectedTeacher(teacher)}
+        ></List>
       </Box>
-    )
+
+      <Dialog 
+          open={selectedTeacher !== null} 
+          fullWidth PaperProps={{sx: {p: 5}}}
+          onClose={()=>setSelectedTeacher(null)}
+        >
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField 
+              label="Digite o nome"
+              type="text"
+              fullWidth
+              onChange={(event)=>setName(event.target.value)}
+              value={name}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField 
+              label="Digite o e-mail"
+              type="email"
+              fullWidth
+              onChange={(e)=>setEmail(e.target.value)}
+              value={email}
+            />
+          </Grid>
+        </Grid>
+        <DialogActions sx={{mt: 5}}>
+          <Button onClick={()=>setSelectedTeacher(null)}>Cancelar</Button>
+          <Button onClick={()=>classDate()}>Marcar</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  )
 }
 
 export default Home

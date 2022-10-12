@@ -4,13 +4,44 @@ import { ApiService } from "../../services/ApiService";
 
 export function useIndex(){
     const [listTeachers, setListTeachers] = useState<Teacher[]>([])
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null)
 
     useEffect(() => {
         ApiService.get('/teachers').then((response)=>{
             setListTeachers(response.data)
         })
     }, [])
+
+    function classDate(){
+        if(selectedTeacher !== null){
+            if(verifyClassData()){
+                ApiService.post(`/teachers/${selectedTeacher.id}/classes`,{
+                    name,
+                    email
+            }).then(()=>{
+                setSelectedTeacher(null)
+                alert('Cadastrado com sucesso!')
+            }).catch((error)=>{
+                alert(error.response?.data.message)
+            })
+            }else{
+                alert('Preencha os dados corretamente')
+            }
+        }
+    }
+    function verifyClassData(){
+        return name.length > 0 && email.length > 0
+    }
     return{
-        listTeachers
+        listTeachers,
+        name,
+        setName,
+        email,
+        setEmail,
+        selectedTeacher,
+        setSelectedTeacher,
+        classDate
     }
 }

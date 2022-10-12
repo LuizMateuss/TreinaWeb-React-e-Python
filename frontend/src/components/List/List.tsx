@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
 import { Teacher } from "../../@types/teacher";
 import { FormatterService } from "../../services/FormatterService";
 import { Description, EmptyList, Informations, ItemList, ListsStyled, Name, Picture, Value } from "./List.style";
 
 interface ListProps{
     teachers: Teacher[],
+    onSelect: (teacher: Teacher) => void
 }
 
 const List = (props: ListProps) => {
@@ -20,7 +20,7 @@ const List = (props: ListProps) => {
                             <Name>{teacher.name}</Name>
                             <Value>{FormatterService.monetaryValue(teacher.value_hour)} por hora</Value>
                             <Description>{FormatterService.limitText(teacher.description, 20)}</Description>
-                            <Button sx={{width: '70%'}}>Marcar Aula com {teacher.name}</Button>
+                            <Button onClick={()=>props.onSelect(teacher)} sx={{width: '70%'}}>Marcar Aula com {teacher.name}</Button>
                         </Informations>
                     </ItemList>
                     ))}
