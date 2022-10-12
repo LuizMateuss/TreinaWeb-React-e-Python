@@ -8,14 +8,8 @@ interface ListProps{
 }
 
 const List = (props: ListProps) => {
-    const countState = useState(0)
-    const counter = countState[0]
-    const setCounter = countState[1]
-
     return (
         <div>
-            <div>Contador igual a {counter}</div>
-            <button onClick={()=> setCounter(counter+1)}>Somar +1</button>
             {props.teachers.length > 0 ? (
                 <ListsStyled>
                     {props.teachers.map(teacher => (
