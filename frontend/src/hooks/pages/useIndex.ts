@@ -15,6 +15,10 @@ export function useIndex(){
         })
     }, [])
 
+    useEffect(()=>{
+        clearForm()
+    }, [selectedTeacher])
+
     function classDate(){
         if(selectedTeacher !== null){
             if(verifyClassData()){
@@ -35,6 +39,12 @@ export function useIndex(){
     function verifyClassData(){
         return name.length > 0 && email.length > 0
     }
+
+    function clearForm(){
+        setName('')
+        setEmail('')
+    }
+    
     return{
         listTeachers,
         name,
